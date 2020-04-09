@@ -1,5 +1,5 @@
 import numpy as np
-from initializers import 
+
 
 def sigmoid(Z):
     A = 1 / (1 + np.exp(-Z))
@@ -14,7 +14,7 @@ def relu(Z):
 def relu_backward(dA, activation_cache):
     Z = activation_cache
     dZ = np.array(dA, copy=True)
-    dZ[ Z <= 0] = 0
+    dZ[ Z <= 0 ] = 0
 
     return dZ
 

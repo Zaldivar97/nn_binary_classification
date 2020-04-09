@@ -1,12 +1,16 @@
 import numpy as np
-HE_INITIALIZER = "h"
-XAVIER_INITIALIZER = "x"
+from enum import Enum
 
 
-def initialize_W(layer_dims, initializer_type):
-    if initializer_type == HE_INITIALIZER:
+class Initializer(Enum):
+    HE_INITIALIZER = "h"
+    XAVIER_INITIALIZER = "x"
+
+
+def initialize(layer_dims, initializer_type: Enum):
+    if initializer_type == Initializer.HE_INITIALIZER:
         initializer = __he_initializer
-    elif initializer_type == XAVIER_INITIALIZER:
+    elif initializer_type == Initializer.XAVIER_INITIALIZER:
         initializer = __xavier_initializer
     parameters = {}
     L = len(layer_dims)

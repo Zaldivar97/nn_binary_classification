@@ -1,6 +1,7 @@
 import numpy as np
 from enum import Enum
 from .activations import sigmoid, relu
+from .regularization import compute_dropout
 
 
 def __linear_forward(A, W, b):
@@ -42,14 +43,6 @@ def L_model_forward(X, parameters, keep_prob):
 
     return AL, caches
     
-def compute_dropout(A_prev, keep_prob):
-    D = np.random.rand(*A_prev.shape)
-    A_prev = (D < keep_prob).astype(int)
-    A_prev_after_droput = A_prev * D
-    #escala el valor esperado de A_prev que fue modificado por el dropout
-    A_prev_after_droput = A_prev_after_droput / keep_prob
-    return A_prev_after_droput, D
-
 
 class Activation(Enum):
     SIGMOID = 1

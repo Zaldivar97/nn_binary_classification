@@ -9,7 +9,7 @@ def __linear_backward(dZ, D, linear_cache, keep_prob, lambd):
     m = A_prev.shape[1]
     dW = np.dot(dZ, A_prev.T) / m  # derivada de W
     if lambd > 0:
-        dW = dW + (lambd/m) * W
+        dW = dW + (lambd/m) * W #regularizacion l2(reduce overfitting)
     db = np.sum(dZ, axis=1, keepdims=True) / m  # derivada de b
     dA_prev = np.dot(W.T, dZ) * D
     dA_prev = dA_prev / keep_prob

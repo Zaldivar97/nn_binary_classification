@@ -16,7 +16,7 @@ def initialize(layer_dims, initializer_type: Enum):
     L = len(layer_dims)
     for l in range(1, L):
         parameters['W'+str(l)] = np.random.randn(layer_dims[l],
-                                                 layer_dims[l-1]) * initializer(layer_dims[l])
+                                                 layer_dims[l-1]) * initializer(layer_dims[l-1])
         parameters['b'+str(l)] = np.zeros((layer_dims[l], 1))
 
     return parameters

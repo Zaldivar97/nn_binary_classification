@@ -7,10 +7,10 @@ def load_data(train_dataset_path, test_dataset_path):
     train_set_y = np.array(train_dataset["train_set_y"][:])
     test_dataset = h5py.File(test_dataset_path,"r")
     test_set_x = np.array(test_dataset["test_set_x"][:])
-    test_set_y = np.array(test_dataset["test_set_x"][:])
+    test_set_y = np.array(test_dataset["test_set_y"][:])
 
-    train_set_y = train_set_y.reshape(1, train_set_y.shape)
-    test_set_y = test_set_y.reshape(1, test_set_y.shape)
+    train_set_y = train_set_y.reshape(1, train_set_y.shape[0])
+    test_set_y = test_set_y.reshape(1, test_set_y.shape[0])
 
     return train_set_x, train_set_y, test_set_x, test_set_y
 

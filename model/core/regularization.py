@@ -1,12 +1,12 @@
 import numpy as np
 
-def compute_dropout(A_prev, keep_prob):
-    D = np.random.rand(*A_prev.shape)
-    A_prev = (D < keep_prob).astype(int)
-    A_prev_after_droput = A_prev * D
+def compute_dropout(A, keep_prob):
+    D = np.random.rand(*A.shape)
+    D = (D < keep_prob).astype(int)
+    A_after_droput = A * D
     #escala el valor esperado de A_prev que fue modificado por el dropout
-    A_prev_after_droput = A_prev_after_droput / keep_prob
-    return A_prev_after_droput, D
+    A_after_droput = A_after_droput / keep_prob
+    return A_after_droput, D
 
 
 def L2_regularization(lambd, parameters, L, m):

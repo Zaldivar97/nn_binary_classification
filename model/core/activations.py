@@ -21,6 +21,6 @@ def relu_backward(dA, activation_cache):
 def sigmoid_backward(dA, activation_cache):
     Z = activation_cache
     s, _ = sigmoid(Z)
-    dZ = dA * s * (s - 1)
+    dZ = dA * s * (1 - s)
 
     return dZ

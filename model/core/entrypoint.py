@@ -14,9 +14,9 @@ def normalize_input(X):
     return X
 
 
-def nn_model(X_train, Y_train, layer_dims, learning_rate=0.1, epocs=1000, keep_prob=1, lambd=0, initializer_type=Initializer.HE_INITIALIZER, debug = True):
+def nn_model(X_train, Y_train, layer_dims, learning_rate=0.005, epocs=2000, keep_prob=1, lambd=0, initializer_type=Initializer.HE_INITIALIZER, debug = True):
     parameters = initialize(layer_dims, initializer_type)
-    X_train_normalized = X_train / 255
+    X_train_normalized = normalize_input(X_train)
     cost_cache = [] #para graficar el costo
     for i in range(epocs):
         AL, caches_list, dropout_cache = L_model_forward(X_train_normalized, parameters, keep_prob)
@@ -30,5 +30,6 @@ def nn_model(X_train, Y_train, layer_dims, learning_rate=0.1, epocs=1000, keep_p
         parameters = update_parameters(parameters, grads, learning_rate)
         
         if debug:
-            print(f'Costo en la iteracion {i}: {cost_value}')    
+            if i % 50 == 0:
+                print(f'Costo en la iteracion {i}: {cost_value}')    
     return parameters

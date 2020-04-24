@@ -5,7 +5,7 @@ from .regularization import compute_dropout
 
 
 def __linear_forward(A, W, b):
-    Z: np.ndarray = np.dot(W, A) + b
+    Z = np.dot(W, A) + b
     assert(Z.shape == (W.shape[0], A.shape[1]))
     cache = (A, W, b)
     return Z, cache
@@ -32,15 +32,15 @@ def L_model_forward(X, parameters, keep_prob):
     # de 1 hasta L-1
     for l in range(1, L):
         A_prev = A
-        A, cache = linear_activation_forward(A_prev, parameters['W'+str(l)],
-                                             parameters['b'+str(l)], Activation.RELU)
+        A, cache = linear_activation_forward(A_prev, parameters["W"+str(l)],
+                                             parameters["b"+str(l)], Activation.RELU)
         if keep_prob < 1:
             A, D = compute_dropout(A, keep_prob)
             dropout_cache.append(D)
         caches.append(cache)
 
-    AL, cache = linear_activation_forward(A, parameters['W'+str(L)],
-                                         parameters['b'+str(L)], Activation.SIGMOID)
+    AL, cache = linear_activation_forward(A, parameters["W"+str(L)],
+                                         parameters["b"+str(L)], Activation.SIGMOID)
     caches.append(cache)
 
     return AL, caches, dropout_cache

@@ -1,5 +1,5 @@
 from model.data import data_loader
-from model.core.entrypoint import nn_model
+from model.core.entrypoint import nn_model, predict
 
 
 def run(train_dataset_path, test_dataset_path):
@@ -11,4 +11,8 @@ def run(train_dataset_path, test_dataset_path):
 
     layer_dims = [train_x_transformed.shape[0], 15, 6, 4, 1]
     trained_parameters = nn_model(train_x_transformed, train_set_y, layer_dims, epocs=5000)
+
+    predict(train_x_transformed, train_set_y, trained_parameters, dataset_type="training")
+    predict(test_x_transformed, test_set_y, trained_parameters, dataset_type="test")
+
     print("DONE")
